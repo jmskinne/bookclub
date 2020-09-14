@@ -1,27 +1,35 @@
-import React, {useContext, useEffect} from "react"
+import React, {useContext, useEffect, useState} from "react"
 
 import {BookApiContext} from "./bookAPIProvider"
-//import {BookContext} from "./BookProvider"
+
 import {Book} from "./Book"
-//import "./Books.css"
+
 
 export const BookList = () => {
-    const {apiBooks, getApiBooks} = useContext(BookApiContext)
+    const {apiBooks, getApiBooks, searchTerms} = useContext(BookApiContext)
 
-    //const {books, getBooks} = useContext(BookContext)
+    const [filteredAPIBooks, setFiltered] = useState([])
+    
     useEffect(() => {
-        //getBooks()
+        
         getApiBooks()
         
     }, [])
 
+    useEffect(() => {
+        if(searchTerms !== "") {
+            const subset = apiBooks.filter(b => b.title.toLowerCase().includes(searchTerms))
+            setFiltered(subset)
+        }
+    }, [searchTerms, apiBooks])
     
 
     
         return (
             <div className="books">
                 {
-                    apiBooks.map(b => <Book key={b.id} book = {b} />)
+                    filteredAPIBooks.map(b => {
+                        return <Book key={b.id} book = {b} />})
                 }
             </div>
         )
