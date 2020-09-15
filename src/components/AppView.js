@@ -5,15 +5,17 @@ import { Route } from "react-router-dom"
 import {BookApiProvider} from "./book/bookAPIProvider"
 import {BookList} from "./book/BookList"
 import {BookApiSearch} from "./book/BookSearch"
-//import {BookProvider} from "./book/BookProvider"
+import {BookProvider} from "./book/BookProvider"
+import { LibraryList } from "./book/LibraryList"
 
 export const AppView = (props) => {
     return (
         <>
-            {/* <BookProvider>
+            <h4>Library</h4>
+            <BookProvider>
                 <Route exact path="/" />
-                    <BookList />
-            </BookProvider> */}
+                    <LibraryList />
+            </BookProvider>
             
             <BookApiProvider>
                 <Route exact path ="/books" render={

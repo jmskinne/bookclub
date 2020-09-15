@@ -6,20 +6,23 @@ import {Book} from "./Book"
 
 
 export const BookList = () => {
-    const {apiBooks, getApiBooks, searchTerms} = useContext(BookApiContext)
+    const {apiBooks, searchTerms, getApiBooks} = useContext(BookApiContext)
 
     const [filteredAPIBooks, setFiltered] = useState([])
     
     useEffect(() => {
+        if(searchTerms !== "") {
+            getApiBooks(searchTerms)
+        }
         
-        getApiBooks()
-        
-    }, [])
+    }, [searchTerms])
 
     useEffect(() => {
         if(searchTerms !== "") {
             const subset = apiBooks.filter(b => b.title.toLowerCase().includes(searchTerms))
             setFiltered(subset)
+        } else {
+            setFiltered(apiBooks) 
         }
     }, [searchTerms, apiBooks])
     
