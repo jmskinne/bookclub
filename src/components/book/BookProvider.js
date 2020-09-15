@@ -11,9 +11,30 @@ export const BookProvider = (props) => {
             .then(setBooks)
     }
 
+    const addToUserLibrary = (userBook) => {
+        return fetch("http://localhost:8088/userBooks", {
+            method: "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(userBook)
+        })
+        
+    }
+
+    const saveBook = (savedBook) => {
+        return fetch("http://localhost:8088/books", {
+            method : "POST",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(savedBook)
+        })
+    }
+
     return (
         <BookContext.Provider value={{
-            books, getBooks
+            books, getBooks, addToUserLibrary, saveBook
         }}>
             {props.children}
         </BookContext.Provider>

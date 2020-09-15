@@ -2,7 +2,7 @@ import React from "react"
 
 import { Route } from "react-router-dom"
 
-import {BookApiProvider} from "./book/bookAPIProvider"
+import { BookApiProvider} from "./book/bookAPIProvider"
 import {BookList} from "./book/BookList"
 import {BookApiSearch} from "./book/BookSearch"
 import {BookProvider} from "./book/BookProvider"
@@ -18,17 +18,31 @@ export const AppView = (props) => {
             </BookProvider>
             
             <BookApiProvider>
-                <Route exact path ="/books" render={
-                    props => {
-                       return <>
-                            <BookApiSearch />
-                            <BookList {...props}/>
-                        </>
-                    }
-                } />
+                <BookProvider>
+                    <Route exact path ="/books" render={
+                        props => {
+                            return <>
+                                    <BookApiSearch />
+                                    <BookList {...props}/>
+                                </>
+                            }
+                    } />
+                </BookProvider>
+            </BookApiProvider>
+
+            <BookProvider>
+                <BookApiProvider>
+                    <Route exact path="/library" render={
+                        props => {
+                            return <>
+                                <LibraryList {...props} />
+                            </>
+                        }
+                    } />
+                </BookApiProvider>
+            </BookProvider>
                     
                 
-            </BookApiProvider>
 
 
             

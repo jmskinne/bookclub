@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react"
 import {BookApiContext} from "./bookAPIProvider"
 
 export const BookApiSearch = () => {
-    const {setTerms } = useContext(BookApiContext)
+    const { setTerms } = useContext(BookApiContext)
         
     //const {userInput, setUserInput = useState([])
 
