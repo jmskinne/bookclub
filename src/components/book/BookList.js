@@ -22,6 +22,7 @@ export const BookList = (props) => {
 
     useEffect(() => {
         if(searchTerms !== "") {
+            
             const subset = apiBooks.filter(b => b.title.toLowerCase().includes(searchTerms))
             setFiltered(subset)
         } else {
@@ -34,11 +35,11 @@ export const BookList = (props) => {
         <article className="books">
             {
                 filteredAPIBooks.map(b => {
-                    return <section key={b.id} className="book" id={b.id}>
+                    return <section className="book" >
                         <div><h6 className="book__title">{b.title}</h6></div>
                         <div className="book__author">{b.author}</div>
                         <img src={b.cover} />
-                        <button type="submit" id={b.id} value={b.id}
+                        <button type="submit" id={b.id}
                             onClick={ event => {
                                 const userId = parseInt(localStorage.getItem("bookclub_user"))
                                 const bookId = event.target.id
@@ -48,15 +49,17 @@ export const BookList = (props) => {
                                     userId,
                                     bookId
                                 })
+
                                 saveBook ({
                                     title : b.title,
                                     author: b.author,
                                     isbn : b.isbn,
                                     cover : b.cover,
                                     pages : b.pages,
-                                    id : b.id
+                                    booktag : b.booktag,
+                                    id : b.booktag
 
-                                })
+                                }).then(props.history.push("/library"))
                                 
                                 
                             

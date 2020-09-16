@@ -15,7 +15,7 @@ export const BookApiProvider = (props) => {
     
     
     
-    //const getApiBooks = (searchTerms) => {
+    const getApiBooks = (searchTerms) => {
         return fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerms}&langRestrict=en&printType=books&key=${key.bookKey}`)
             .then(r => r.json())
             .then(
@@ -27,7 +27,9 @@ export const BookApiProvider = (props) => {
                             isbn : b.volumeInfo.industryIdentifiers,
                             cover : b.volumeInfo.imageLinks.thumbnail,
                             pages : b.volumeInfo.pageCount,
+                            booktag : b.id,
                             id : b.id
+                            
                         }
                     })
                 setApiBooks(newBooks)
@@ -47,7 +49,9 @@ export const BookApiProvider = (props) => {
                         isbn : b.volumeInfo.industryIdentifiers,
                         cover : b.volumeInfo.imageLinks.thumbnail,
                         pages : b.volumeInfo.pageCount,
-                        id : b.id
+                        booktag : b.id,
+                       // id : b.id
+                        
                     }
                 })
             setBookById(userBookById)

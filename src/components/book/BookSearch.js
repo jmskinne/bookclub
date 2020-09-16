@@ -27,15 +27,11 @@ export const BookApiSearch = () => {
             {/* <form>
                 <label htmlFor="apiSearch">Title Search</label>
                 <input type="text" name="apiSearch" id="apiSearch"  />
-                <button type="submit" onSubmit={event => {
+                <button type="submit" onClick={event => {
                     
                     event.preventDefault()
                     setTerms(event.target.value)
-                    
-                    
-                    
-                    
-                    }}
+                }}
                     
                     
                     className="bookAPI_button">

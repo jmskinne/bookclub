@@ -11,10 +11,16 @@ import { LibraryList } from "./book/LibraryList"
 export const AppView = (props) => {
     return (
         <>
-            <h4>Library</h4>
+            <h4> Your Library</h4>
             <BookProvider>
-                <Route exact path="/" />
-                    <LibraryList />
+                <Route exact path="/" render={
+                    props => {
+                        return <>
+                        <LibraryList {...props}/>
+                        </>
+                    }
+                
+            } />
             </BookProvider>
             
             <BookApiProvider>
@@ -22,6 +28,7 @@ export const AppView = (props) => {
                     <Route exact path ="/books" render={
                         props => {
                             return <>
+                                    
                                     <BookApiSearch />
                                     <BookList {...props}/>
                                 </>
