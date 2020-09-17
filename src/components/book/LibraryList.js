@@ -1,12 +1,12 @@
 import React, {useContext, useEffect} from "react"
 
 import {BookContext} from "./BookProvider"
-//import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
+import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 
 export const LibraryList = (props) => {
     const {books, getBooks, deleteFromUserLibrary, getUserBooks, userBooks} = useContext(BookContext)
-    //const {JoinABookClub} = useContext(BookClubJoinContext) || {}
+    const {JoinABookClub} = useContext(BookClubJoinContext) || {}
 
     //const [userBooks, setUserBooks] = useState([])
 
@@ -28,16 +28,16 @@ export const LibraryList = (props) => {
                         <h4 className="library__title">{matched.title}</h4>
                         <div className="library__author">{matched.author}</div>
                         <div className="library__pages">{matched.pages}</div>
-                        <button type="submit"
+                        <button type="submit" id={libraryBook.id}
                             onClick={e => {
                                 
                                 e.preventDefault()
-                                // const bookId = libraryBook.id
-                                // const name = libraryBook.title
-                                // //JoinABookClub ({
-                                //     bookId,
-                                //     name
-                                // })                                
+                                const bookId = matched.id
+                                const name = matched.title
+                                JoinABookClub ({
+                                    bookId,
+                                    name
+                                })                                
                         }}
                         className="joinBookClubBtn">
                         Join a Book club

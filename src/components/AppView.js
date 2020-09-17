@@ -7,6 +7,7 @@ import {BookList} from "./book/BookList"
 import {BookApiSearch} from "./book/BookSearch"
 import {BookProvider} from "./book/BookProvider"
 import { LibraryList } from "./book/LibraryList"
+import {BookClubJoinProvider} from "./bookClubJoin/BookClubJoinProvider"
 
 export const AppView = (props) => {
     return (
@@ -39,13 +40,15 @@ export const AppView = (props) => {
 
             <BookProvider>
                 <BookApiProvider>
-                    <Route exact path="/library" render={
-                        props => {
-                            return <>
-                                <LibraryList {...props} />
-                            </>
-                        }
-                    } />
+                    <BookClubJoinProvider>
+                        <Route exact path="/library" render={
+                            props => {
+                                return <>
+                                    <LibraryList {...props} />
+                                </>
+                            }
+                        } />
+                    </BookClubJoinProvider>
                 </BookApiProvider>
             </BookProvider>
                     
