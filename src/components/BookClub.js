@@ -11,8 +11,8 @@ export const BookClub = () => (
             if (localStorage.getItem("bookclub_user")) {
                 return (
                     <>
-                        <Route render={props => <NavBar {...props} />} />
                         <Route render={props => <AppView {...props} />} />
+                        <Route render={props => <NavBar {...props} />} />
                     </>
                 )
             } else {

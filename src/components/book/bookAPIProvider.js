@@ -31,10 +31,10 @@ export const BookApiProvider = (props) => {
                             id : b.id
                             
                         }
-                    })
+                    }) 
                 setApiBooks(newBooks)
                 }
-            )
+            ) 
     }
 
     const getApiBookById = (bookId) => {
