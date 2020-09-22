@@ -14,7 +14,7 @@ export const BookProvider = (props) => {
     }
 
     const addToUserLibrary = (userBook) => {
-        return fetch("http://localhost:8088/userBooks", {
+        return fetch("http://localhost:8088/userbooks", {
             method: "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -25,7 +25,7 @@ export const BookProvider = (props) => {
     }
 
     const getUserBooks = () => {
-        return fetch("http://localhost:8088/userBooks")
+        return fetch("http://localhost:8088/userbooks")
             .then(r=>r.json())
             .then(setUserBooks)
     }
@@ -42,7 +42,7 @@ export const BookProvider = (props) => {
     }
 
     const deleteFromUserLibrary = (id) => {
-        return fetch(`http://localhost:8088/userBooks/${id}`, {
+        return fetch(`http://localhost:8088/userbooks/${id}`, {
             method : "DELETE"
         })
         .then(getUserBooks)
@@ -50,7 +50,7 @@ export const BookProvider = (props) => {
     }  
 
     const getBookById = (id) => {
-        return fetch(`http://localhost:8088/books/${id}?_expand=userBooks`)
+        return fetch(`http://localhost:8088/books/${id}?_expand=userbooks`)
             .then(r => r.json())
     }
 

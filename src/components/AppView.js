@@ -7,12 +7,18 @@ import {BookList} from "./book/BookList"
 import {BookApiSearch} from "./book/BookSearch"
 import {BookProvider} from "./book/BookProvider"
 import { LibraryList } from "./book/LibraryList"
-import {BookClubJoinProvider} from "./bookClubJoin/BookClubJoinProvider"
+import { BookClubJoinProvider} from "./bookClubJoin/BookClubJoinProvider"
+import {BookClubDetail} from "./bookClubJoin/BookClubDetail"
+import {UserProvider} from "./Users/UserProvider"
 
+import {UserClubProvider} from "./UserClub/UserClubProvider"
+import { BookClubJoinList } from "./bookClubJoin/BookClubJoinList"
+
+import {MessageProvider} from "./message/MessageProvider"
 export const AppView = (props) => {
     return (
         <>
-            <h4> Your Library</h4>
+            
             <BookProvider>
                 <Route exact path="/" render={
                     props => {
@@ -51,6 +57,26 @@ export const AppView = (props) => {
                     </BookClubJoinProvider>
                 </BookApiProvider>
             </BookProvider>
+
+            <BookClubJoinProvider>
+                <BookProvider>
+                    <UserProvider>
+                        <UserClubProvider>
+                            <MessageProvider>
+                                <Route exact path="/clubs" render={(props) => {
+                                    return <BookClubJoinList {...props} />
+
+                                }}>
+                                </Route>
+                                        
+                                    <Route path="/clubs/:bookclubId(\d+)" render={
+                                        props => <BookClubDetail {...props} />
+                                    } />
+                                </MessageProvider>
+                        </UserClubProvider>
+                    </UserProvider>
+                </BookProvider>
+            </BookClubJoinProvider>
                     
                 
 
@@ -59,3 +85,9 @@ export const AppView = (props) => {
         </>
     )
 }
+
+// props => {
+//     return <>
+//         <BookClubDetail {...props} />
+//     </>
+// }} />

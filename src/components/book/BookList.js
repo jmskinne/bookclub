@@ -23,8 +23,8 @@ export const BookList = (props) => {
     useEffect(() => {
         if(searchTerms !== "") {
             
-            const subset = apiBooks.filter(b => b.title.toLowerCase().includes(searchTerms))
-            setFiltered(subset)
+            const booksearch = apiBooks.filter(b => b.title.toLowerCase().includes(searchTerms))
+            setFiltered(booksearch)
         } else {
             setFiltered(apiBooks) 
         }
@@ -35,9 +35,9 @@ export const BookList = (props) => {
         <article className="books">
             {
                 filteredAPIBooks.map(b => {
-                    return <section className="book" >
-                        <div><h6 className="book__title">{b.title}</h6></div>
-                        <div className="book__author">{b.author}</div>
+                    return <section className="booksearch" >
+                        <div><h6 className="booksearch__title">{b.title}</h6></div>
+                        <div className="booksearch__author">{b.author}</div>
                         <img src={b.cover} />
                         <button type="submit" id={b.id}
                             onClick={ event => {
