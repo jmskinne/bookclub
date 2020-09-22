@@ -10,9 +10,11 @@ import { LibraryList } from "./book/LibraryList"
 import { BookClubJoinProvider} from "./bookClubJoin/BookClubJoinProvider"
 import {BookClubDetail} from "./bookClubJoin/BookClubDetail"
 import {UserProvider} from "./Users/UserProvider"
-//import {BookClubJoinList} from "./bookClubJoin/BookClubJoinList"
+
 import {UserClubProvider} from "./UserClub/UserClubProvider"
 import { BookClubJoinList } from "./bookClubJoin/BookClubJoinList"
+
+import {MessageProvider} from "./message/MessageProvider"
 export const AppView = (props) => {
     return (
         <>
@@ -60,15 +62,17 @@ export const AppView = (props) => {
                 <BookProvider>
                     <UserProvider>
                         <UserClubProvider>
-                            <Route exact path="/clubs" render={(props) => {
-                                return <BookClubJoinList {...props} />
+                            <MessageProvider>
+                                <Route exact path="/clubs" render={(props) => {
+                                    return <BookClubJoinList {...props} />
 
-                            }}>
-                            </Route>
-                                    
-                                <Route path="/clubs/join/:bookClubId(\d+)" render={
-                                    props => <BookClubDetail {...props} />
-                                } />
+                                }}>
+                                </Route>
+                                        
+                                    <Route path="/clubs/:bookclubId(\d+)" render={
+                                        props => <BookClubDetail {...props} />
+                                    } />
+                                </MessageProvider>
                         </UserClubProvider>
                     </UserProvider>
                 </BookProvider>

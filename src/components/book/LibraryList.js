@@ -35,9 +35,11 @@ export const LibraryList = (props) => {
                                     e.preventDefault()
                                     const bookId = matched.id
                                     const name = matched.title
+                                    const cover = matched.cover
                                     CreateABookClub ({
                                         bookId,
-                                        name
+                                        name,
+                                        cover
                                     }).then(props.history.push("/clubs"))                        
                             }}
                             className="joinBookClubBtn">

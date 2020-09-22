@@ -16,13 +16,26 @@ export const MessageProvider = (props) => {
             .then(r => r.json())
     }
 
-    const getMessageByBookClub = (club) => {
-        return fetch(`http://http://localhost:8088/${club.id}/1?_embed=messages`)
+    const getMessageByBookClub = (bookclubId) => {
+        return fetch(`http://localhost:8088/bookclubs/${bookclubId}?_embed=messages`)
+            .then(r => r.json())
+            
+    }
+
+    const addMessage = (messageObj) => {
+        return fetch("http://localhost:8088/messages", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(messageObj)
+        })
+        .then(getAllMessages)
     }
  
     return (
         <MessageContext.Provider value={{
-            messages, getAllMessages, getMessagesByUser, getMessageByBookClub
+            messages, getAllMessages, getMessagesByUser, getMessageByBookClub, addMessage
         }}>
             {props.children}
         </MessageContext.Provider>

@@ -3,17 +3,17 @@ import React, {useState} from "react"
 export const UserClubContext = React.createContext()
 
 export const UserClubProvider = (props) => {
-    const [userClubs, setUserClubs] = useState([])
+    const [userclubs, setUserClubs] = useState([])
 
     const getUserClubs = () => {
-        return fetch("http://localhost:8088/userClubs")
+        return fetch("http://localhost:8088/userclubs")
             .then(r => r.json())
             .then(setUserClubs)
     }
 
     return (
         <UserClubContext.Provider value={{
-            userClubs, getUserClubs
+            userclubs, getUserClubs
         }}>
             {props.children}
         </UserClubContext.Provider>

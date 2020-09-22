@@ -6,13 +6,13 @@ export const BookClubJoinProvider = (props) => {
     const [clubs, setClubs] = useState([])
 
     const getClubs = () => {
-        return fetch("http://localhost:8088/bookClubs")
+        return fetch("http://localhost:8088/bookclubs")
             .then(r=>r.json())
             .then(setClubs)
     }
 
     const CreateABookClub = (clubObj) => {
-        return fetch("http://localhost:8088/bookClubs", {
+        return fetch("http://localhost:8088/bookclubs", {
             method: "POST",
             headers : {
                 "Content-Type" : "application/json"
@@ -22,17 +22,18 @@ export const BookClubJoinProvider = (props) => {
     }
 
     const getClubsById = (bookClubId) => {
-        return fetch(`http://localhost:8088/bookClubs/${bookClubId}?_expand=userBooks&_embed=books`)
+        return fetch(`http://localhost:8088/bookclubs/${bookClubId}?_expand=userbooks&_embed=books`)
             .then(r => r.json())
     }
 
     const getClubsByBook = (bookId) => {
-        return fetch(`http://localhost:8088/books/${bookId}?_embed=bookClubs`)
-        .then(setClubs)
+        return fetch(`http://localhost:8088/books/${bookId}?_embed=bookclubs`)
+            .then(r => r.json())
+            .then(setClubs)
     }
 
     const JoinClub = (club) => {
-        return fetch("http://localhost:8088/userClubs", {
+        return fetch("http://localhost:8088/userclubs", {
             method: "POST",
             headers : {
                 "Content-Type" : "application/json"
