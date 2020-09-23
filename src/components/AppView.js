@@ -15,11 +15,13 @@ import {UserClubProvider} from "./UserClub/UserClubProvider"
 import { BookClubJoinList } from "./bookClubJoin/BookClubJoinList"
 
 import {MessageProvider} from "./message/MessageProvider"
+
 export const AppView = (props) => {
     return (
         <>
             
             <BookProvider>
+                <BookClubJoinProvider>
                 <Route exact path="/" render={
                     props => {
                         return <>
@@ -28,6 +30,7 @@ export const AppView = (props) => {
                     }
                 
             } />
+            </BookClubJoinProvider>
             </BookProvider>
             
             <BookApiProvider>
@@ -77,6 +80,13 @@ export const AppView = (props) => {
                     </UserProvider>
                 </BookProvider>
             </BookClubJoinProvider>
+
+            <Route path="/logout" render={
+                (props) => {
+                    localStorage.removeItem("bookclub_user")
+                    props.history.push("/login")
+                }
+            } />
                     
                 
 

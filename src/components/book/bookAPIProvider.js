@@ -34,7 +34,9 @@ export const BookApiProvider = (props) => {
                     }) 
                 setApiBooks(newBooks)
                 }
-            ) 
+            ).catch(error => {
+                
+            })
     }
 
     const getApiBookById = (bookId) => {
