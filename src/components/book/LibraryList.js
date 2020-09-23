@@ -1,22 +1,52 @@
-import React, {useContext, useEffect} from "react"
+import React, {useContext, useEffect, useState} from "react"
 
 import {BookContext} from "./BookProvider"
+
 import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 
 export const LibraryList = (props) => {
     const {books, getBooks, deleteFromUserLibrary, getUserBooks, userBooks} = useContext(BookContext)
+    const {clubs, getClubs} = useContext(BookClubJoinContext) || {}
     const {CreateABookClub} = useContext(BookClubJoinContext) || {}
 
-    //const [userBooks, setUserBooks] = useState([])
+    //const [clubcheck, setCheck] = useState("")
 
     useEffect(() => {
         getBooks()
+        getUserBooks()
+        getClubs()
     }, [])
 
-    useEffect(() => {
-        getUserBooks()
-    },[])
+    
+    // useEffect(() => {
+    //     const clubcheck = clubs.find(c => c.bookId === ")
+    //     setCheck(clubcheck)
+    //     console.log(clubcheck)
+    // },[clubs])
+    
+    
+    // const clubCheck = () => {
+    //     const checked = clubs.map(c => {
+    //         return books.find(book => book.id === c.bookId)
+    //     })
+
+    //     if(checked !== "") {
+    //         const bookId = matched.id
+    //         const name = matched.title
+    //         const cover = matched.cover
+    //         CreateABookClub ({
+    //                 bookId,
+    //                 name,
+    //                 cover
+    //             }).then(props.history.push("/clubs"))    
+
+    //         } 
+        
+
+        
+
+    // }
     
     return (
         <article className="libraryBooks">
@@ -33,15 +63,21 @@ export const LibraryList = (props) => {
                                 onClick={e => {
                                     
                                     e.preventDefault()
+                                    
                                     const bookId = matched.id
                                     const name = matched.title
                                     const cover = matched.cover
+                                    const clubcheck = clubs.find(c => c.bookId === bookId)
+                                    if(clubcheck) {
+                                       window.alert("Club Exists")
+                                   } else {
+                                    
                                     CreateABookClub ({
                                         bookId,
                                         name,
                                         cover
                                     }).then(props.history.push("/clubs"))                        
-                            }}
+                            }}}
                             className="joinBookClubBtn">
                             Create a Book Club
                             </button>
@@ -75,6 +111,11 @@ export const LibraryList = (props) => {
             }
         </article>
     )
+        
+        
+    
+    
+    
 
     
 }

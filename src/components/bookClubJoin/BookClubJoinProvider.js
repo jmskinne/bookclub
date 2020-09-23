@@ -4,10 +4,12 @@ export const BookClubJoinContext = React.createContext()
 
 export const BookClubJoinProvider = (props) => {
     const [clubs, setClubs] = useState([])
+    const [clubcheck, setCheck] = useState("")
+    
 
     const getClubs = () => {
         return fetch("http://localhost:8088/bookclubs")
-            .then(r=>r.json())
+            .then(r => r.json())
             .then(setClubs)
     }
 

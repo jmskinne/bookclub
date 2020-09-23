@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react"
+import React, {useState, useEffect, useContext, useRef} from "react"
 
 import {BookClubJoinContext} from "./BookClubJoinProvider"
 import {MessageContext} from "../message/MessageProvider"
@@ -7,7 +7,7 @@ import {Message} from "../message/Message"
 
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
-    const {messages, getAllMessages} = useContext(MessageContext)
+    const {messages, getAllMessages, addMessage} = useContext(MessageContext)
 
     const [club, setClub] = useState({})
     const [messagesForClub, setMessagesForClub] = useState([])
@@ -37,7 +37,7 @@ export const BookClubDetail = (props) => {
         setMessagesForClub(messagesForClub)
     }, [messages])
 
-    
+    const sendMessage = useRef(null)
 
     return (
         <div>
@@ -60,7 +60,30 @@ export const BookClubDetail = (props) => {
                 </div>
 
             </article>
-        
+            <form className="chatForm">
+                <h2 className="club_title">{club.name} Message Board</h2>
+                <fieldset>
+                    <div className="chatForm-group">
+                        <label htmlFor="chatBox">Message:</label>
+                        <input type="text" id="chatBox" ref={sendMessage} required className="chatForm-control" placeholder="Send Message to the Group" />
+                    
+                    </div>
+                </fieldset>
+                <button type="submit"
+                    onClick={ e => {
+                        e.preventDefault()
+                        const userId = parseInt(localStorage.getItem("bookclub_user"))
+                        addMessage({
+                            userId,
+                            bookclubId : currentClub,
+                            messageContent : sendMessage.current.value,
+
+                        })
+                    }}
+                    className="btn chatSubmit">
+                        Send Message
+                    </button>
+            </form>
         </div>
     )
                 
