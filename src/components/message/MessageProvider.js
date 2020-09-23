@@ -11,8 +11,8 @@ export const MessageProvider = (props) => {
             .then(setMessages)
     }
 
-    const getMessagesByUser = (user) => {
-        return fetch(`http://localhost:8088/users/${user.id}/?_embed=messages`)
+    const getMessagesByUsers = () => {
+        return fetch(`http://localhost:8088/users/?_embed=messages`)
             .then(r => r.json())
     }
 
@@ -35,7 +35,7 @@ export const MessageProvider = (props) => {
  
     return (
         <MessageContext.Provider value={{
-            messages, getAllMessages, getMessagesByUser, getMessageByBookClub, addMessage
+            messages, getAllMessages, getMessageByBookClub, addMessage, getMessagesByUsers
         }}>
             {props.children}
         </MessageContext.Provider>

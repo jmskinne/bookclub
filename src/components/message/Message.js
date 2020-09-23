@@ -1,7 +1,8 @@
 import React from "react"
 
-export const Message = ({m}) => (
+export const Message = ({m, user}) => (
     <section className="message-card">
-        <div>{m.messageContent}</div>
+        <div>{user.name}: {m.messageContent}</div>
+        
     </section>
 )

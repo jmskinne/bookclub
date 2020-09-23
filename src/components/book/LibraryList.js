@@ -69,7 +69,7 @@ export const LibraryList = (props) => {
                                     const cover = matched.cover
                                     const clubcheck = clubs.find(c => c.bookId === bookId)
                                     if(clubcheck) {
-                                       window.alert("Club Exists")
+                                       props.history.push("/clubs")
                                    } else {
                                     
                                     CreateABookClub ({
