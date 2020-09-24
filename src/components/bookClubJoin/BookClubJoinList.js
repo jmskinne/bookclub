@@ -25,7 +25,7 @@ export const BookClubJoinList = (props) => {
             return userclubs.filter(uc => uc.bookclubId === c.id && uc.userId === currentUser) || {}
         })
         
-        console.log(userclub)
+        
         setUserClub(userclub)
     }, [userclubs])
 
