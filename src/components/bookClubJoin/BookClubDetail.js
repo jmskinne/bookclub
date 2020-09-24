@@ -3,20 +3,24 @@ import React, {useState, useEffect, useContext, useRef} from "react"
 import {BookClubJoinContext} from "./BookClubJoinProvider"
 import {MessageContext} from "../message/MessageProvider"
 import {Message} from "../message/Message"
-
+import {UserContext} from "../Users/UserProvider"
+import { useParams } from "react-router-dom"
 
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
     const {messages, getAllMessages, addMessage} = useContext(MessageContext)
+    const {users, getUsers} = useContext(UserContext)
 
     const [club, setClub] = useState({})
     const [messagesForClub, setMessagesForClub] = useState([])
-
+    
     
     const currentClub = parseInt(props.match.params.bookclubId)
+    
     useEffect(() => {
         getClubs()
         getAllMessages()
+        getUsers()
     }, [])
 
     useEffect(() => {
@@ -24,18 +28,19 @@ export const BookClubDetail = (props) => {
         setClub(club)
     }, [clubs])
 
-    // useEffect(() => {
-    //     const currentClub = parseInt(props.match.params.bookclubId)
-    //     const messagesForClub = getMessageByBookClub(currentClub)
-    //     setMessages(messagesForClub)
-       
-        
-        
-    // }, [])
+    
     useEffect(() => {
         const messagesForClub = messages.filter(m => m.bookclubId === currentClub) || {}
         setMessagesForClub(messagesForClub)
     }, [messages])
+
+    useEffect(() => {
+
+    })
+    
+
+    
+
 
     const sendMessage = useRef(null)
 
@@ -51,12 +56,19 @@ export const BookClubDetail = (props) => {
         <article>
             <div>
             {
-                messagesForClub.map(m => {
-                    return <Message key={m.id} m={m} />
-                    
-                })
                 
-            }
+                    messagesForClub.map(m => {
+                        const t = users.find(user => user.id === m.userId) || {}
+                        return <Message key={m.id} m={m} user={t} />
+                
+                })
+                // messagesForClub.map(m => {
+                //     const u = users.filter(u => u.id === m.userId)
+                //         return <Message key={m.id} m={m} u={u}/>
+                    
+                }
+                
+            
                 </div>
 
             </article>

@@ -4,6 +4,7 @@ import {BookClubJoinContext} from "./BookClubJoinProvider"
 import {Link} from "react-router-dom"
 import { UserClubContext } from "../UserClub/UserClubProvider"
 //import {BookClubJoin} from "./BookClubJoin"
+import {UserContext} from "../Users/UserProvider"
 
 export const BookClubJoinList = (props) => {
     const {clubs, getClubs, JoinClub} = useContext(BookClubJoinContext)
@@ -15,6 +16,7 @@ export const BookClubJoinList = (props) => {
     useEffect(() => {
         getClubs()
         getUserClubs()
+        
     }, [])
 
     useEffect(() =>{
@@ -23,9 +25,11 @@ export const BookClubJoinList = (props) => {
             return userclubs.filter(uc => uc.bookclubId === c.id && uc.userId === currentUser) || {}
         })
         
-        console.log(userclub)
+        
         setUserClub(userclub)
     }, [userclubs])
+
+    
 
     // const clubJoinCheck = () => {
     //     let joinedclub = false
