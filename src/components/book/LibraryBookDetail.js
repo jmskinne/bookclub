@@ -33,8 +33,7 @@ export const LibraryBookDetail = (props) => {
                 const userbookId = parseInt(props.match.params.userbookId)
                 const selectedUserBook = userBooks.find(ub => ub.id === userbookId) || {}
                 SetPageUpdate(selectedUserBook)
-                console.log(selectedUserBook)
-                console.log(currentLibraryBook)
+                
         
     }
 
