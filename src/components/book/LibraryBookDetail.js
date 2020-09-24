@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react"
+import React, {useContext, useEffect, useState, useRef} from "react"
 
 import {BookContext} from "./BookProvider"
 
@@ -6,7 +6,7 @@ import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 
 export const LibraryBookDetail = (props) => {
-    const {books, getBooks, deleteFromUserLibrary} = useContext(BookContext)
+    const {books, getBooks, deleteFromUserLibrary, addPagesToLibraryBook} = useContext(BookContext) || {}
     const {userBooks, getUserBooks} = useContext(BookContext)
     const {clubs, getClubs} = useContext(BookClubJoinContext) || {}
     const {CreateABookClub} = useContext(BookClubJoinContext) || {}
@@ -14,6 +14,36 @@ export const LibraryBookDetail = (props) => {
     const [userBookDetail, setUserBookDetail] = useState({})
     const [bookDetail, setBookDetail] = useState({})
 
+    const [toPageUpdate, SetPageUpdate] = useState({})
+
+    const currentLibraryBook = parseInt(props.match.params.userbookId)
+    
+    
+
+    const handlePageChange = (e) => {
+        const newPageUpdate = Object.assign({}, toPageUpdate)
+        newPageUpdate[e.target.name] = parseInt(e.target.value) 
+        SetPageUpdate(newPageUpdate)
+        console.log(newPageUpdate)
+        
+    }
+
+    const getBookDetailInEdit = () => {
+            
+                const userbookId = parseInt(props.match.params.userbookId)
+                const selectedUserBook = userBooks.find(ub => ub.id === userbookId) || {}
+                SetPageUpdate(selectedUserBook)
+                
+        
+    }
+
+    useEffect(() => {
+        getBookDetailInEdit()
+    }, [userBooks])
+
+    
+    
+    
     useEffect(() => {
         getUserBooks()
         getBooks()
@@ -23,18 +53,41 @@ export const LibraryBookDetail = (props) => {
     useEffect(() => {
         const userBookDetail = userBooks.find(ub => ub.id === parseInt(props.match.params.userbookId)) || {}
         setUserBookDetail(userBookDetail)
-        
     }, [userBooks])
+        
 
     useEffect(() => {
         const bookDetail = books.find(book => book.id === userBookDetail.bookId) || {}
+        setBookDetail(bookDetail)
+    }, [books])
             
         
-        setBookDetail(bookDetail)
         
-    }, [books])
 
     
+
+   
+
+    
+    
+    const updatedNumberOfPagesRead = () => {
+        const bookId = toPageUpdate.bookId
+        if(bookId === "") {
+            window.alert("TEST")
+        } else {
+            if(currentLibraryBook) {
+                addPagesToLibraryBook({
+                pagesRead : parseInt(toPageUpdate.pagesRead),
+                id : toPageUpdate.id,
+                userId : toPageUpdate.userId,
+                bookId : bookId
+                    })
+                    .then(() => props.history.push(`/library/${currentLibraryBook}`))
+            }  
+        }       
+    }
+
+
     
     return (
         
@@ -42,7 +95,28 @@ export const LibraryBookDetail = (props) => {
                 <img src={bookDetail.cover} />
                 <h3 className="libraryBook_title">{bookDetail.title}</h3>
                 <div className="library__author">{bookDetail.author}</div>
-                <div className="library__pages">{bookDetail.pages}</div>
+                <div className="library_pagesRead">Pages Read: {userBookDetail.pagesRead} / Pages In Book {bookDetail.pages}</div>
+                <form className="libraryBook_pageRecord">
+                    <fieldset>
+                        <div className="pageForm-group">
+                            <label htmlFor="pagesRead">Pages Read: </label>
+                            <input type="text" id="pageRecord" name="pagesRead" required className="pageForm-control"
+                                defaultValue={userBookDetail.pagesRead}
+                                onChange={handlePageChange} />
+                        </div>
+                    </fieldset>
+                    <button type="submit"
+                     onClick={rec => {
+                        rec.preventDefault()
+                        
+                        updatedNumberOfPagesRead()
+                        
+                            
+                     }}
+                     className="pageSubmitBtn">
+                         Submit Pages
+                     </button>
+                </form>
                 <button type="submit" id={userBookDetail.id}
                     onClick={e => {
                         
@@ -69,7 +143,7 @@ export const LibraryBookDetail = (props) => {
                     onClick={e => {
                         const id = parseInt(e.target.id)
                         
-                    deleteFromUserLibrary(id)  
+                    deleteFromUserLibrary(id).then(props.history.push("/library"))  
                 }}
                 className="deleteLibraryBook">
                     Delete from Library
