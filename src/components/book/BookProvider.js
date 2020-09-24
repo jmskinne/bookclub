@@ -24,6 +24,18 @@ export const BookProvider = (props) => {
         
     }
 
+    const addPagesToLibraryBook = (userbook) => {
+        return fetch(`http://localhost:8088/userbooks/${userbook.id}`, {
+            method:"PUT",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(userbook)
+        })
+        .then(getUserBooks)
+        
+    }
+
     const getUserBooks = () => {
         return fetch("http://localhost:8088/userbooks")
             .then(r=>r.json())
@@ -56,7 +68,9 @@ export const BookProvider = (props) => {
 
     return (
         <BookContext.Provider value={{
-            books, getBooks, addToUserLibrary, saveBook, userBooks, getUserBooks, deleteFromUserLibrary,getBookById
+            books, getBooks, addToUserLibrary, 
+            saveBook, userBooks, getUserBooks, deleteFromUserLibrary,
+            getBookById, addPagesToLibraryBook
         }}>
             {props.children}
         </BookContext.Provider>

@@ -47,7 +47,8 @@ export const BookList = (props) => {
                                 addToUserLibrary ({
                                     
                                     userId,
-                                    bookId
+                                    bookId,
+                                    pagesRead : 0
                                 })
 
                                 saveBook ({

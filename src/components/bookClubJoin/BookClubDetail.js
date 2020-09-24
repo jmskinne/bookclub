@@ -4,7 +4,7 @@ import {BookClubJoinContext} from "./BookClubJoinProvider"
 import {MessageContext} from "../message/MessageProvider"
 import {Message} from "../message/Message"
 import {UserContext} from "../Users/UserProvider"
-import { useParams } from "react-router-dom"
+
 
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
@@ -34,9 +34,7 @@ export const BookClubDetail = (props) => {
         setMessagesForClub(messagesForClub)
     }, [messages])
 
-    useEffect(() => {
-
-    })
+    
     
 
     
@@ -91,7 +89,10 @@ export const BookClubDetail = (props) => {
                             messageContent : sendMessage.current.value,
 
                         })
+                        
                     }}
+                    
+                    
                     className="btn chatSubmit">
                         Send Message
                     </button>
