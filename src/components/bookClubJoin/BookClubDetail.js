@@ -2,13 +2,13 @@ import React, {useState, useEffect, useContext, useRef} from "react"
 
 import {BookClubJoinContext} from "./BookClubJoinProvider"
 import {MessageContext} from "../message/MessageProvider"
-import {Message} from "../message/Message"
+//import {Message} from "../message/Message"
 import {UserContext} from "../Users/UserProvider"
 
 
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
-    const {messages, getAllMessages, addMessage} = useContext(MessageContext)
+    const {messages, getAllMessages, addMessage, deleteMessage} = useContext(MessageContext)
     const {users, getUsers} = useContext(UserContext)
 
     const [club, setClub] = useState({})
@@ -16,6 +16,7 @@ export const BookClubDetail = (props) => {
     
     
     const currentClub = parseInt(props.match.params.bookclubId)
+    const currentUser = parseInt(localStorage.getItem("bookclub_user"))
     
     useEffect(() => {
         getClubs()
@@ -36,7 +37,35 @@ export const BookClubDetail = (props) => {
 
     
     
-
+    const messageDeleteforCurrentUser = () => {
+        const testTest = messagesForClub.filter(m => m.userId === currentUser)
+        console.log(testTest)
+        return (
+            <div>
+            {
+                testTest.map(mes => {
+                    if(mes.userId === currentUser) {
+                        
+                        return <button type="submit" id={mes.id}
+                            onClick={e => {
+                            {   
+                                const id = parseInt(e.target.id)
+                                deleteMessage(id)
+                            
+                        }}}
+                            >Delete
+                            </button>
+                    }
+                })
+                
+            }
+            </div>
+        )
+            
+        
+        
+            
+    }
     
 
 
@@ -57,12 +86,29 @@ export const BookClubDetail = (props) => {
                 
                     messagesForClub.map(m => {
                         const t = users.find(user => user.id === m.userId) || {}
-                        return <Message key={m.id} m={m} user={t} />
+                        if(m.userId === currentUser) {
+                            return <section key={m.id}>
+                                <div>{t.name}: {m.messageContent}</div>
+                            
+                                <button type="submit" id={m.id}
+                                onClick={e => {
+                                {   
+                                    const id = parseInt(e.target.id)
+                                    deleteMessage(id)
+                                
+                            }}}
+                            >Delete
+                            </button>
+
+                        </section>
+                        } else {
+                            return <section key={m.id}>
+                                <div>{t.name}: {m.messageContent}</div>
+                            </section>
+                        }
                 
                 })
-                // messagesForClub.map(m => {
-                //     const u = users.filter(u => u.id === m.userId)
-                //         return <Message key={m.id} m={m} u={u}/>
+                
                     
                 }
                 
