@@ -32,10 +32,17 @@ export const MessageProvider = (props) => {
         })
         .then(getAllMessages)
     }
+
+    const deleteMessage = (messageId) => {
+        return fetch(`http://localhost:8088/messages/${messageId}`, {
+            method: "DELETE"
+        })
+        .then(getAllMessages)
+    }   
  
     return (
         <MessageContext.Provider value={{
-            messages, getAllMessages, getMessageByBookClub, addMessage, getMessagesByUsers
+            messages, getAllMessages, getMessageByBookClub, addMessage, getMessagesByUsers, deleteMessage
         }}>
             {props.children}
         </MessageContext.Provider>
