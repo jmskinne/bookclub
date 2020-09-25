@@ -6,7 +6,7 @@ import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 
 export const LibraryList = (props) => {
-    const {books, getBooks, deleteFromUserLibrary, getUserBooks, userBooks} = useContext(BookContext)
+    const {books, getBooks, getUserBooks, userBooks} = useContext(BookContext)
     const {clubs, getClubs} = useContext(BookClubJoinContext) || {}
     const {CreateABookClub} = useContext(BookClubJoinContext) || {}
 

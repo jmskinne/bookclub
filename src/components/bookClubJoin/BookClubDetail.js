@@ -6,6 +6,7 @@ import {MessageContext} from "../message/MessageProvider"
 import {UserContext} from "../Users/UserProvider"
 
 
+
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
     const {messages, getAllMessages, addMessage, deleteMessage} = useContext(MessageContext)
@@ -13,6 +14,8 @@ export const BookClubDetail = (props) => {
 
     const [club, setClub] = useState({})
     const [messagesForClub, setMessagesForClub] = useState([])
+
+    
     
     
     const currentClub = parseInt(props.match.params.bookclubId)
@@ -37,35 +40,35 @@ export const BookClubDetail = (props) => {
 
     
     
-    const messageDeleteforCurrentUser = () => {
-        const testTest = messagesForClub.filter(m => m.userId === currentUser)
-        console.log(testTest)
-        return (
-            <div>
-            {
-                testTest.map(mes => {
-                    if(mes.userId === currentUser) {
+    // const messageDeleteforCurrentUser = () => {
+    //     const testTest = messagesForClub.filter(m => m.userId === currentUser)
+    //     console.log(testTest)
+    //     return (
+    //         <div>
+    //         {
+    //             testTest.map(mes => {
+    //                 if(mes.userId === currentUser) {
                         
-                        return <button type="submit" id={mes.id}
-                            onClick={e => {
-                            {   
-                                const id = parseInt(e.target.id)
-                                deleteMessage(id)
+    //                     return <button type="submit" id={mes.id}
+    //                         onClick={e => {
+    //                         {   
+    //                             const id = parseInt(e.target.id)
+    //                             deleteMessage(id)
                             
-                        }}}
-                            >Delete
-                            </button>
-                    }
-                })
+    //                     }}}
+    //                         >Delete
+    //                         </button>
+    //                 }
+    //             })
                 
-            }
-            </div>
-        )
+    //         }
+    //         </div>
+    //     )
             
         
         
             
-    }
+    // }
     
 
 
@@ -143,6 +146,7 @@ export const BookClubDetail = (props) => {
                         Send Message
                     </button>
             </form>
+            
         </div>
     )
                 

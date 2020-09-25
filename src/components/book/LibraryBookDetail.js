@@ -5,6 +5,8 @@ import {BookContext} from "./BookProvider"
 import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 
+import {Timer} from "../bookTimer/BookTimer"
+
 export const LibraryBookDetail = (props) => {
     const {books, getBooks, deleteFromUserLibrary, addPagesToLibraryBook} = useContext(BookContext) || {}
     const {userBooks, getUserBooks} = useContext(BookContext)
@@ -24,7 +26,7 @@ export const LibraryBookDetail = (props) => {
         const newPageUpdate = Object.assign({}, toPageUpdate)
         newPageUpdate[e.target.name] = parseInt(e.target.value) 
         SetPageUpdate(newPageUpdate)
-        console.log(newPageUpdate)
+        
         
     }
 
@@ -77,6 +79,7 @@ export const LibraryBookDetail = (props) => {
         } else {
             if(currentLibraryBook) {
                 addPagesToLibraryBook({
+                minutesRead : toPageUpdate.minutesRead,
                 pagesRead : parseInt(toPageUpdate.pagesRead),
                 id : toPageUpdate.id,
                 userId : toPageUpdate.userId,
@@ -96,6 +99,7 @@ export const LibraryBookDetail = (props) => {
                 <h3 className="libraryBook_title">{bookDetail.title}</h3>
                 <div className="library__author">{bookDetail.author}</div>
                 <div className="library_pagesRead">Pages Read: {userBookDetail.pagesRead} / Pages In Book {bookDetail.pages}</div>
+                <div className="library__minutesread">Minutes Read : {userBookDetail.minutesRead}</div>
                 <form className="libraryBook_pageRecord">
                     <fieldset>
                         <div className="pageForm-group">
@@ -148,7 +152,10 @@ export const LibraryBookDetail = (props) => {
                 className="deleteLibraryBook">
                     Delete from Library
                 </button>
-            </section>
+                <div>
+                <Timer {...props}/>
+                </div>
+           </section>
         
 )             
 }
