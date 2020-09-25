@@ -48,7 +48,8 @@ export const BookList = (props) => {
                                     
                                     userId,
                                     bookId,
-                                    pagesRead : 0
+                                    pagesRead : 0,
+                                    minutesRead : 0,
                                 })
 
                                 saveBook ({

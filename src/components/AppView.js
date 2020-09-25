@@ -17,6 +17,8 @@ import { BookClubJoinList } from "./bookClubJoin/BookClubJoinList"
 import {MessageProvider} from "./message/MessageProvider"
 import { LibraryBookDetail } from "./book/LibraryBookDetail"
 
+
+
 export const AppView = (props) => {
     return (
         <>
@@ -78,6 +80,10 @@ export const AppView = (props) => {
                                     <Route path="/clubs/:bookclubId(\d+)" render={
                                         props => <BookClubDetail {...props} />
                                     } />
+
+                                    
+                                    
+                                    
                                 </MessageProvider>
                         </UserClubProvider>
                     </UserProvider>
