@@ -67,13 +67,30 @@ export const LibraryList = (props) => {
                                 onClick={ e => {
                                     e.preventDefault()
                                     const toFav = userBooks.find(ub => ub.id === userbook.id)
-                                    addPagesToLibraryBook({
-                                        id : toFav.id,
-                                        pagesRead : toFav.pagesRead,
-                                        userId : toFav.userId,
-                                        bookId : toFav.bookId,
-                                        favorite : true
-                                    })
+                                    if(toFav.favorite === false) {
+                                        //like
+                                        addPagesToLibraryBook({
+                                            id : toFav.id,
+                                            pagesRead : toFav.pagesRead,
+                                            userId : toFav.userId,
+                                            bookId : toFav.bookId,
+                                            favorite : true,
+                                            minutesRead : 0
+                                        
+                                        })
+                                    } else {
+                                        //unlike
+                                        addPagesToLibraryBook({
+                                            id : toFav.id,
+                                            pagesRead : toFav.pagesRead,
+                                            userId : toFav.userId,
+                                            bookId : toFav.bookId,
+                                            favorite : false,
+                                            minutesRead : 0
+                                        
+                                        })
+
+                                    }
                                 }}
                             >
                                 Favorite
