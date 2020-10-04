@@ -62,7 +62,7 @@ export const BookList = (props) => {
                                     booktag : b.booktag,
                                     id : b.booktag
 
-                                }).then(props.history.push("/library"))
+                                }).then(props.history.push("/"))
                                 
                                 
                             

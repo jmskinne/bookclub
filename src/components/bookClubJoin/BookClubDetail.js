@@ -91,7 +91,7 @@ export const BookClubDetail = (props) => {
                         const t = users.find(user => user.id === m.userId) || {}
                         if(m.userId === currentUser) {
                             return <section key={m.id}>
-                                <div>{t.name}: {m.messageContent}</div>
+                                <div>{t.username}: {m.messageContent}</div>
                             
                                 <button type="submit" id={m.id}
                                 onClick={e => {

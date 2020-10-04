@@ -4,6 +4,7 @@ import {BookContext} from "./BookProvider"
 
 import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
+import {Progress} from 'reactstrap'
 
 export const LibraryList = (props) => {
     const {books, getBooks, getUserBooks, userBooks, addPagesToLibraryBook} = useContext(BookContext)
@@ -58,6 +59,7 @@ export const LibraryList = (props) => {
                 userbooks.map(userbook => { 
                    
                         const matched = books.find(b => b.booktag === userbook.bookId) ||  {}
+                        const progress = Math.round(parseInt(userbook.pagesRead) / parseInt(matched.pages) * 100)
                         return <section className="libraryBook" key={userbook.id}>
                             <h5 className="library__title">{matched.title}</h5> 
                             <Link to={`/library/${userbook.id}`}>
@@ -95,6 +97,9 @@ export const LibraryList = (props) => {
                             >
                                 Favorite
                             </button>
+                            <div className="text-center">{progress}%</div> 
+                                <Progress value={progress} />
+                            
                         </section>
                     } 
                 )
