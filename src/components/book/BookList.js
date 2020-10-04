@@ -50,6 +50,7 @@ export const BookList = (props) => {
                                     bookId,
                                     pagesRead : 0,
                                     minutesRead : 0,
+                                    favorite : false
                                 })
 
                                 saveBook ({

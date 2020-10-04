@@ -6,11 +6,12 @@ import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 
 export const LibraryList = (props) => {
-    const {books, getBooks, getUserBooks, userBooks} = useContext(BookContext)
+    const {books, getBooks, getUserBooks, userBooks, addPagesToLibraryBook} = useContext(BookContext)
     const {clubs, getClubs} = useContext(BookClubJoinContext) || {}
     const {CreateABookClub} = useContext(BookClubJoinContext) || {}
 
-    
+    const [filterSelect, setSelectedFilter] = useState({})
+    const [userbooks, setUserBooks] = useState([])
 
     useEffect(() => {
         getBooks()
@@ -18,10 +19,94 @@ export const LibraryList = (props) => {
         getClubs()
     }, [])
 
+    useEffect(() => {
+        if(filterSelect === "0") {
+            const filterU = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
+            setUserBooks(filterU)
+            
+        } else if (filterSelect === "1") {
+            const filterFavs = userBooks.filter(ub => ub.favorite === true && ub.userId === parseInt(localStorage.getItem("bookclub_user")))
+            setUserBooks(filterFavs)
+            
+        } else if (filterSelect) {
+            const initialRender = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
+        setUserBooks(initialRender)
+        }
+        
+    }, [userBooks, filterSelect])
+
+    
+
     return (
+        <div>
+            <section>
+                <div>
+                    <select className="libraryFilters" 
+                        onChange={e=> {
+                            const filter = e.target.value
+                            setSelectedFilter(filter)
+                        }}>
+                        <option value="0" id="filter__allBooks">All Books</option>
+                        <option value="1"id ="filter__fav">Favorites</option>
+                        
+                    </select>
+                    
+                </div>
+            </section>
         <article className="libraryBooks">
             {
-                userBooks.map(userbook => { 
+                userbooks.map(userbook => { 
+                   
+                        const matched = books.find(b => b.booktag === userbook.bookId) ||  {}
+                        return <section className="libraryBook" key={userbook.id}>
+                            <h5 className="library__title">{matched.title}</h5> 
+                            <Link to={`/library/${userbook.id}`}>
+                                <img src={matched.cover} alt="No Cover"/>
+                            </Link>
+                            <button type="submit" id={userbook.id}
+                                onClick={ e => {
+                                    e.preventDefault()
+                                    const toFav = userBooks.find(ub => ub.id === userbook.id)
+                                    addPagesToLibraryBook({
+                                        id : toFav.id,
+                                        pagesRead : toFav.pagesRead,
+                                        userId : toFav.userId,
+                                        bookId : toFav.bookId,
+                                        favorite : true
+                                    })
+                                }}
+                            >
+                                Favorite
+                            </button>
+                        </section>
+                    } 
+                )
+                    
+            
+            }
+        </article>
+        </div>
+    )
+
+
+                            
+                            
+                            
+                
+
+        
+        
+    
+    
+    
+
+    
+}
+
+
+{/* <article className="libraryBooks">
+            {
+                userbooks.map(userbook => { 
                     if(userbook.userId === parseInt(localStorage.getItem("bookclub_user"))) {
                         const matched = books.find(b => b.booktag === userbook.bookId) ||  {}
                         return <section className="libraryBook" key={userbook.id}>
@@ -42,24 +127,7 @@ export const LibraryList = (props) => {
                     
             
             }
-        </article>
-    )
-
-
-                            
-                            
-                            
-                
-
-        
-        
-    
-    
-    
-
-    
-}
-
+ */}
 
 //currently working render of the library list view
 // return (

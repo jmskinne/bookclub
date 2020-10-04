@@ -82,6 +82,7 @@ export const LibraryBookDetail = (props) => {
                 minutesRead : toPageUpdate.minutesRead,
                 pagesRead : parseInt(toPageUpdate.pagesRead),
                 id : toPageUpdate.id,
+                favorite: toPageUpdate.favorite,
                 userId : toPageUpdate.userId,
                 bookId : bookId
                     })
