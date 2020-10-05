@@ -1,0 +1,39 @@
+.club-Container {
+    background: rgb(136,174,233);
+    background: linear-gradient(90deg, rgba(136,174,233,1) 0%, rgba(248,250,255,1) 0%);
+}
+
+
+.clublist{
+    display:flex;
+    margin: 1rem;
+    /* margin: 1rem;
+    align-items: center;
+    flex-wrap: wrap; */
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap:wrap;
+    align-content: space-evenly;
+    font-family: 'Libre Baskerville', serif;
+    
+    
+    /*justify-content: flex-start;
+    flex-direction: column; */
+} 
+
+.bookclubs {
+    margin-bottom: 1rem;
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin-right:1rem;
+    max-width: 165px;
+    text-align: center;
+    
+}
+
+.sectionTitle {
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+}

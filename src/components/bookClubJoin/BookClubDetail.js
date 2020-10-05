@@ -75,7 +75,7 @@ export const BookClubDetail = (props) => {
     const sendMessage = useRef(null)
 
     return (
-        <div className="messageContainer">
+        <div className="bookClubContainer">
         <div className="headerContainer" >
             
                 <h6>{club.name} Message Board</h6>
@@ -84,7 +84,7 @@ export const BookClubDetail = (props) => {
                 
             </div>
         <article>
-            <div>
+            <div className="messageContainer">
             {
                 
                     messagesForClub.map(m => {
@@ -125,7 +125,7 @@ export const BookClubDetail = (props) => {
                 <fieldset>
                     <div className="chatForm-group">
                         <label htmlFor="chatBox">Message:</label>
-                        <input type="text" id="chatBox" ref={sendMessage} required className="chatForm-control" placeholder="Send Message to the Group" />
+                        <input type="text" id="chatBox" ref={sendMessage} required className="chatForm-control" placeholder="Send Group Message" />
                     
                     </div>
                 </fieldset>
