@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react"
 import {Link} from "react-router-dom"
 import {BookContext} from "./BookProvider"
 
-import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
+//import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 import {Progress} from 'reactstrap'
 //import { findByLabelText } from "@testing-library/react"
@@ -15,8 +15,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 export const LibraryList = (props) => {
     const {books, getBooks, getUserBooks, userBooks, addPagesToLibraryBook} = useContext(BookContext) || {}
-    const {clubs, getClubs} = useContext(BookClubJoinContext) || {}
-    const {CreateABookClub} = useContext(BookClubJoinContext) || {}
+    
 
     const [filterSelect, setSelectedFilter] = useState({})
     const [userbooks, setUserBooks] = useState([])
@@ -24,7 +23,7 @@ export const LibraryList = (props) => {
     useEffect(() => {
         getBooks()
         getUserBooks()
-        getClubs()
+        
     }, [])
 
     useEffect(() => {
@@ -38,10 +37,13 @@ export const LibraryList = (props) => {
             
         } else if (filterSelect) {
             const initialRender = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
-        setUserBooks(initialRender)
-        }
+        setUserBooks(initialRender) }
+        // } else if (filterSelect === false) {
+        //     const testRender = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
+        //     setUserBooks(testRender)
+        // }
         
-    }, [userBooks, filterSelect])
+    }, [userBooks, filterSelect, books])
 
     
     return (

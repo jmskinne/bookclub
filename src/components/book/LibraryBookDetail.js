@@ -114,7 +114,7 @@ export const LibraryBookDetail = (props) => {
                                 onChange={handlePageChange} />
                         </div>
                     </fieldset>
-                    <button type="submit"
+                    <button type="submit" className="pagesUpdateBtn"
                      onClick={rec => {
                         rec.preventDefault()
                         
@@ -122,11 +122,11 @@ export const LibraryBookDetail = (props) => {
                         
                             
                      }}
-                     className="pageSubmitBtn">
+                     >
                          Update Pages Read
                      </button>
                 </form>
-                <button type="submit" id={userBookDetail.id}
+                <button type="submit" id={userBookDetail.id} className="createClubBtn"
                     onClick={e => {
                         
                         e.preventDefault()
@@ -145,16 +145,16 @@ export const LibraryBookDetail = (props) => {
                             cover
                         }).then(props.history.push("/clubs"))                        
                 }}}
-                className="joinBookClubBtn">
+                >
                 Create a Book Club
                 </button>
-                <button type="submit" id={userBookDetail.id}
+                <button type="submit" id={userBookDetail.id} className="deleteBookBtn"
                     onClick={e => {
                         const id = parseInt(e.target.id)
                         
                     deleteFromUserLibrary(id).then(props.history.push("/library"))  
                 }}
-                className="deleteLibraryBook">
+                >
                     Delete from Library
                 </button>
                 <div>
@@ -170,6 +170,7 @@ export const LibraryBookDetail = (props) => {
                 }}
             >Back
             </FontAwesomeIcon>
+            <div className="backBtnText">Back</div>
             </div>
    </>     
 )             

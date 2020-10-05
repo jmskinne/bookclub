@@ -58,7 +58,7 @@ export const BookClubJoinList = (props) => {
     return (
             //<div className="bookclubs">
             <>
-            <div class="club-Container">
+            <div className="club-Container">
             <h5 className="sectionTitle">Book Clubs</h5>
                 <article className="clublist">
                 {
@@ -67,7 +67,7 @@ export const BookClubJoinList = (props) => {
                                 <h6>{club.name}</h6>
                                 <img src={club.cover} />
                                 
-                            <button type="submit" id={club.id}
+                            <button type="submit" id={club.id} className="joinClubBtn"
                             
                             onClick={e => {
                                 e.preventDefault()

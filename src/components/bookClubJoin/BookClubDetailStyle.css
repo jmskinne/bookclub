@@ -5,19 +5,52 @@
     text-align: center;
 }
 
+/* .topContainer {
+	display:flex
+} */
+
 .headerContainer {
-    margin-bottom: 1rem;
+	margin-bottom: 1rem;
+	text-align: center;
+	
+	
 }
 
 
-.messageContainer {
+
+/* .messageContainer {
     text-align: left;
-    margin-left: 2rem;
+	margin-left: 2rem;
+	
+	
+} */
+
+.theMessageContainer {
+	border: 2px solid #dedede;
+	background: rgb(136,174,233);
+	background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(240,245,245,1) 0%);
+  border-radius: 5px;
+  padding: 2px;
+  margin: 1rem;
+  
 }
 
-.messageSubmitted {
-    margin-top: .5rem;
+.message_user {
+	float:left;
+	
+	
+	
 }
+
+.message_userTwo {
+	
+	text-align: left;
+
+}
+
+
+
+
 
 .chatForm {
     margin-top: 1rem;
@@ -35,7 +68,7 @@
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	margin-top: 1rem;
 	font-size:20px;
 	font-weight:bold;
 	padding:13px 32px;
@@ -52,4 +85,33 @@
     position:relative;
 	top:1px;
 }
+
+#chatDeleteBtn {
+	background: url('../icons/trash-alt-regular.svg');
+	cursor: pointer;
+	background-repeat: no-repeat;
+	padding: 15px 10px 10px 10px;
+	margin-left: 15rem;
+	
+	
+	
+	
+	
+
+	
+}
+
+.secondMessageContainer {
+  
+	background: rgb(136,174,233);
+	background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(221,209,226,1) 0%);
+  	border-radius: 5px;
+	padding-top: .4rem;
+	padding-left: .3rem;
+	padding-bottom: .4rem;
+  	margin-left: 1rem ;
+  	margin-right: 1rem;
+  
+}
+
 

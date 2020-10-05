@@ -13,6 +13,9 @@ export const BookList = (props) => {
 
     const [filteredAPIBooks, setFiltered] = useState([])
     
+
+    
+    
     useEffect(() => {
         if(searchTerms !== "") {
             getApiBooks(searchTerms)
@@ -43,15 +46,6 @@ export const BookList = (props) => {
                             onClick={ event => {
                                 const userId = parseInt(localStorage.getItem("bookclub_user"))
                                 const bookId = event.target.id
-                                
-                                addToUserLibrary ({
-                                    
-                                    userId,
-                                    bookId,
-                                    pagesRead : 0,
-                                    minutesRead : 0,
-                                    favorite : false
-                                })
 
                                 saveBook ({
                                     title : b.title,
@@ -62,7 +56,22 @@ export const BookList = (props) => {
                                     booktag : b.booktag,
                                     id : b.booktag
 
-                                }).then(props.history.push("/"))
+                                }).then(() => {
+                                
+                                addToUserLibrary ({
+                                    
+                                    userId,
+                                    bookId,
+                                    pagesRead : 0,
+                                    minutesRead : 0,
+                                    favorite : false
+                                })
+                            }) //.then(props.history.push("/library"))
+                            
+                            
+                            
+
+                                
                                 
                                 
                             

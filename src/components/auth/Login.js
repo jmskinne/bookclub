@@ -31,6 +31,10 @@ export const Login = props => {
     }
 
     return (
+        <>
+        <header className="logo">
+            <img className="logomain" src={require('../icons/logo2.png')} alt="App Logo"/>
+        </header>
         <main className="container--login">
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
@@ -73,5 +77,6 @@ export const Login = props => {
                 <Link to="/register">Not a member yet?</Link>
             </section>
         </main>
+        </>
     )
 }

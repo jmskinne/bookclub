@@ -3,6 +3,8 @@
     flex-wrap: nowrap;
     justify-content: space-evenly;
     position: fixed;
+    margin-bottom: -.5rem;
+    
     
     
 }
@@ -10,8 +12,28 @@
 .navbar__item {
     
     
-    
+    flex-basis:11%;
     list-style-type: none;
+    
+}
+
+.navbar__link {
+    font-size: 17.5px;
+    
+    
+}
+
+.nav__title {
+    flex-basis: 10%;
+    font-family: 'Libre Baskerville', serif;
+}
+
+.nav__text {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    font-size: 14px;
+    
     
 }
 
