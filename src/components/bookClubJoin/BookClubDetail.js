@@ -5,8 +5,7 @@ import {MessageContext} from "../message/MessageProvider"
 //import {Message} from "../message/Message"
 import {UserContext} from "../Users/UserProvider"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBackspace } from '@fortawesome/free-solid-svg-icons'
+import "./BookClubDetailStyle.css"
 
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
@@ -76,14 +75,14 @@ export const BookClubDetail = (props) => {
     const sendMessage = useRef(null)
 
     return (
-        <div>
-        <section>
-            <div>
-                {club.name}
-            </div>
+        <div className="messageContainer">
+        <div className="headerContainer" >
+            
+                <h6>{club.name} Message Board</h6>
+            
                 <img src={club.cover} />
                 
-            </section>
+            </div>
         <article>
             <div>
             {
@@ -92,9 +91,9 @@ export const BookClubDetail = (props) => {
                         const t = users.find(user => user.id === m.userId) || {}
                         if(m.userId === currentUser) {
                             return <section key={m.id}>
-                                <div>{t.username}: {m.messageContent}</div>
+                                <div className="messageSubmitted">{t.username}: {m.messageContent} 
                             
-                                <FontAwesomeIcon type="submit" id={m.id} icon={faBackspace}
+                                 <button type="submit" id={m.id} className="chatDeleteBtn"
                                 onClick={e => {
                                 {   
                                     const id = parseInt(e.target.id)
@@ -102,14 +101,15 @@ export const BookClubDetail = (props) => {
                                 
                             }}}
                             >Delete
-                            </FontAwesomeIcon>
-
+                            </button>
+                            </div>
                         </section>
                         } else {
                             return <section key={m.id}>
                                 <div>{t.name}: {m.messageContent}</div>
                             </section>
                         }
+                        
                 
                 })
                 
@@ -121,7 +121,7 @@ export const BookClubDetail = (props) => {
 
             </article>
             <form className="chatForm">
-                <h2 className="club_title">{club.name} Message Board</h2>
+                
                 <fieldset>
                     <div className="chatForm-group">
                         <label htmlFor="chatBox">Message:</label>

@@ -1,0 +1,52 @@
+.container {
+    width: 350px;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    margin-top: 2rem;
+    background: rgb(136,174,233);
+    background: linear-gradient(90deg, rgba(136,174,233,1) 0%, rgba(202,214,246,1) 100%);
+    padding: 1rem 3rem;
+    border-radius: 10px;
+  }
+  
+  .time {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .buttons button {
+    padding: 0.8rem 2rem;
+    border: none;
+    margin-left: 0.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 300ms ease-in-out;
+    transform: translateY(0);
+  }
+  
+  .buttons button:hover {
+    transform: translateY(-1px);
+  }
+  
+  
+  .start {
+    background: #3ed927;
+    color: white;
+  }
+
+  .record {
+      background: #beace9;
+  }
+  
+  .pause {
+    background: #e4e446;
+  }
+  
+  .reset {
+    background: #fd7171;
+    color: white;
+  }

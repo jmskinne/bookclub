@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import {BookContext} from "../book/BookProvider"
 
-
+import "./BookTimer.css"
 
 
 export const Timer = (props) => {
@@ -105,7 +105,7 @@ export const Timer = (props) => {
         <button onClick={stopTimer} className="reset">
           Reset
         </button>
-        <button type="submit"
+        <button type="submit" className="record"
         onClick={e => {
             e.preventDefault()
             recordMinutes()

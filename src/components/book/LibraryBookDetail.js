@@ -7,6 +7,9 @@ import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 import "../book/BookDetailStyle.css"
 import {Timer} from "../bookTimer/BookTimer"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons'
+
 export const LibraryBookDetail = (props) => {
     const {books, getBooks, deleteFromUserLibrary, addPagesToLibraryBook} = useContext(BookContext) || {}
     const {userBooks, getUserBooks} = useContext(BookContext)
@@ -95,18 +98,11 @@ export const LibraryBookDetail = (props) => {
     
     return (
             <>
-            <button type="submit" className="backBtn"
-                onClick={e => {
-                    
-                    e.preventDefault()
-                    props.history.push("/library")
-                }}
-            >Back
-            </button>
+            
             <section className="libraryBookDetail">
-                <h5 className="libraryBook_title">{bookDetail.title}</h5>
+                <h5 className="libraryBookDetail_title">{bookDetail.title}</h5>
                 <img className="libraryBookDetail_cover" src={bookDetail.cover} />
-                <div className="library__author">{bookDetail.author}</div>
+                <div className="library__author">Author: {bookDetail.author}</div>
                 <div className="library_pagesRead">Pages Read: {userBookDetail.pagesRead} / Pages In Book {bookDetail.pages}</div>
                 <div className="library__minutesread">Minutes Read : {userBookDetail.minutesRead}</div>
                 <form className="libraryBook_pageRecord">
@@ -127,7 +123,7 @@ export const LibraryBookDetail = (props) => {
                             
                      }}
                      className="pageSubmitBtn">
-                         Updated Pages Read
+                         Update Pages Read
                      </button>
                 </form>
                 <button type="submit" id={userBookDetail.id}
@@ -165,6 +161,16 @@ export const LibraryBookDetail = (props) => {
                 <Timer {...props}/>
                 </div>
            </section>
+           <div className="library__backBtn">
+           <FontAwesomeIcon type="submit" className="backBtn" icon={faArrowAltCircleLeft} size="2x"
+                onClick={e => {
+                    
+                    e.preventDefault()
+                    props.history.push("/library")
+                }}
+            >Back
+            </FontAwesomeIcon>
+            </div>
    </>     
 )             
 }

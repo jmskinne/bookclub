@@ -14,10 +14,21 @@
     
     flex-wrap:wrap;
     align-content: space-evenly;
+    font-family: 'Libre Baskerville', serif;
     
     
     
-} 
+}
+
+.sectionTitle {
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+}
+
+.libraryBook_title {
+    font-size: 13px;
+    margin-top: .75rem;
+}
 
 .logo {
     display:flex;
@@ -60,7 +71,7 @@
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 78%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
@@ -76,10 +87,10 @@
 
 
 .addFavoriteBtn {
-   background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
+    background: rgb(136,174,233);
+    background: linear-gradient(90deg, rgba(136,174,233,1) 0%, rgba(248,250,255,1) 100%);
+    
+  
 }
 
 
@@ -91,7 +102,10 @@
 .libraryFilters {
     margin-top:1rem;
 }
-    
+
+.progressBar {
+    margin-top: .5rem;
+}
     
     
 

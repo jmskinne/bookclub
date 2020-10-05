@@ -1,4 +1,13 @@
 .libraryBookDetail {
     text-align: center;
+    font-family: 'Libre Baskerville', serif;
 }
+
+
+.library__backBtn {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+
 

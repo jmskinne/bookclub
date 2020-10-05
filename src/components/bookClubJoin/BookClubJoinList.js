@@ -59,7 +59,7 @@ export const BookClubJoinList = (props) => {
                 {
                     clubs.map(club => {
                         return <section className="bookclubs" key={club.id}>
-                                <h3>{club.name}</h3>
+                                <h6>{club.name}</h6>
                                 <img src={club.cover} />
                                 
                             <button type="submit" id={club.id}
