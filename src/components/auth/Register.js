@@ -8,6 +8,7 @@ export const Register = (props) => {
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
+    const username = useRef()
 
     const existingUserCheck = () => {
         return fetch(`http://localhost:8088/users?email=${email.current.value}`)
@@ -29,7 +30,8 @@ export const Register = (props) => {
                         body: JSON.stringify({
                             email: email.current.value,
                             password: password.current.value,
-                            name: `${firstName.current.value} ${lastName.current.value}`
+                            name: `${firstName.current.value} ${lastName.current.value}`,
+                            username : username.current.value
                         })
                     })
                         .then(_ => _.json())
@@ -69,6 +71,14 @@ export const Register = (props) => {
                         name="lastName"
                         className="form-control"
                         placeholder="Last name"
+                        required />
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="username">User Name</label>
+                    <input ref={username} type="text"
+                        name="username"
+                        className="form-control"
+                        placeholder="User Name"
                         required />
                 </fieldset>
                 <fieldset>

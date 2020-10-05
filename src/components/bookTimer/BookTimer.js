@@ -81,7 +81,8 @@ export const Timer = (props) => {
             id : toUpdate.id,
             pagesRead : toUpdate.pagesRead,
             userId : toUpdate.userId,
-            bookId : toUpdate.bookId
+            bookId : toUpdate.bookId,
+            favorite : toUpdate.favorite
 
         }).then(props.history.push(`/library/${currentLibraryBook}`))
 

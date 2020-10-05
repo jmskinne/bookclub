@@ -5,7 +5,8 @@ import {MessageContext} from "../message/MessageProvider"
 //import {Message} from "../message/Message"
 import {UserContext} from "../Users/UserProvider"
 
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBackspace } from '@fortawesome/free-solid-svg-icons'
 
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
@@ -91,9 +92,9 @@ export const BookClubDetail = (props) => {
                         const t = users.find(user => user.id === m.userId) || {}
                         if(m.userId === currentUser) {
                             return <section key={m.id}>
-                                <div>{t.name}: {m.messageContent}</div>
+                                <div>{t.username}: {m.messageContent}</div>
                             
-                                <button type="submit" id={m.id}
+                                <FontAwesomeIcon type="submit" id={m.id} icon={faBackspace}
                                 onClick={e => {
                                 {   
                                     const id = parseInt(e.target.id)
@@ -101,7 +102,7 @@ export const BookClubDetail = (props) => {
                                 
                             }}}
                             >Delete
-                            </button>
+                            </FontAwesomeIcon>
 
                         </section>
                         } else {

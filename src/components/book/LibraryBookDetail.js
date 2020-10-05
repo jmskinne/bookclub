@@ -4,7 +4,7 @@ import {BookContext} from "./BookProvider"
 
 import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
-
+import "../book/BookDetailStyle.css"
 import {Timer} from "../bookTimer/BookTimer"
 
 export const LibraryBookDetail = (props) => {
@@ -82,6 +82,7 @@ export const LibraryBookDetail = (props) => {
                 minutesRead : toPageUpdate.minutesRead,
                 pagesRead : parseInt(toPageUpdate.pagesRead),
                 id : toPageUpdate.id,
+                favorite: toPageUpdate.favorite,
                 userId : toPageUpdate.userId,
                 bookId : bookId
                     })
@@ -93,10 +94,18 @@ export const LibraryBookDetail = (props) => {
 
     
     return (
-        
-            <section className="libraryBook">
-                <img src={bookDetail.cover} />
-                <h3 className="libraryBook_title">{bookDetail.title}</h3>
+            <>
+            <button type="submit" className="backBtn"
+                onClick={e => {
+                    
+                    e.preventDefault()
+                    props.history.push("/library")
+                }}
+            >Back
+            </button>
+            <section className="libraryBookDetail">
+                <h5 className="libraryBook_title">{bookDetail.title}</h5>
+                <img className="libraryBookDetail_cover" src={bookDetail.cover} />
                 <div className="library__author">{bookDetail.author}</div>
                 <div className="library_pagesRead">Pages Read: {userBookDetail.pagesRead} / Pages In Book {bookDetail.pages}</div>
                 <div className="library__minutesread">Minutes Read : {userBookDetail.minutesRead}</div>
@@ -118,7 +127,7 @@ export const LibraryBookDetail = (props) => {
                             
                      }}
                      className="pageSubmitBtn">
-                         Submit Pages
+                         Updated Pages Read
                      </button>
                 </form>
                 <button type="submit" id={userBookDetail.id}
@@ -156,7 +165,7 @@ export const LibraryBookDetail = (props) => {
                 <Timer {...props}/>
                 </div>
            </section>
-        
+   </>     
 )             
 }
                                     
