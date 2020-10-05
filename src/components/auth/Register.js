@@ -48,6 +48,10 @@ export const Register = (props) => {
     }
 
     return (
+        <>
+        <header className="logo">
+            <img className="logomain" src={require('../icons/logo2.png')} alt="App Logo"/>
+        </header>
         <main style={{ textAlign: "center" }}>
 
             <dialog className="dialog dialog--password" ref={passwordDialog}>
@@ -112,5 +116,6 @@ export const Register = (props) => {
                 </fieldset>
             </form>
         </main>
+        </>
     )
 }

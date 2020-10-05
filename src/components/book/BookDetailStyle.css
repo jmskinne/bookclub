@@ -1,4 +1,80 @@
 .libraryBookDetail {
     text-align: center;
+    font-family: 'Libre Baskerville', serif;
+    background: rgb(136,174,233);
+    background: linear-gradient(90deg, rgba(136,174,233,1) 0%, rgba(202,214,246,1) 100%);
+}
+
+
+.library__backBtn {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.pagesUpdateBtn {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(140,206,212,1) 0%);
+    border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	
+	font-size:14px;
+	font-weight:bold;
+	padding:8px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+
+}
+
+.pagesUpdateBtn:hover {
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(52,193,204,1) 0%);
+}
+
+.createClubBtn {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(160,104,182,1) 0%);
+    border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+    margin-right: 1rem;
+    margin-top: 1rem;
+	font-size:14px;
+	font-weight:bold;
+	padding:8px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+
+}
+
+.createClubBtn:hover {
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(181,81,219,1) 0%);
+}
+
+.deleteBookBtn {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(215,119,113,1) 0%);
+    border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	
+	font-size:14px;
+	font-weight:bold;
+	padding:8px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+
+}
+
+.deleteBookBtn:hover {
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(218,27,15,1) 0%);
 }
 

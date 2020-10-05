@@ -5,8 +5,10 @@ import {MessageContext} from "../message/MessageProvider"
 //import {Message} from "../message/Message"
 import {UserContext} from "../Users/UserProvider"
 
+import "./BookClubDetailStyle.css"
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBackspace } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faArrowAltCircleLeft} from '@fortawesome/free-solid-svg-icons'
 
 export const BookClubDetail = (props) => {
     const {clubs, getClubs} = useContext(BookClubJoinContext)
@@ -38,6 +40,10 @@ export const BookClubDetail = (props) => {
         const messagesForClub = messages.filter(m => m.bookclubId === currentClub) || {}
         setMessagesForClub(messagesForClub)
     }, [messages])
+
+    // useEffect(() => {
+    //     const usermessage = messages.filter(m => m.userId === )
+    // })
 
     
     
@@ -76,40 +82,42 @@ export const BookClubDetail = (props) => {
     const sendMessage = useRef(null)
 
     return (
-        <div>
-        <section>
-            <div>
-                {club.name}
-            </div>
+        <>
+        <div className="bookClubContainer">
+        <div className="headerContainer" >
+            
+                <h5>{club.name} Message Board</h5>
+            
                 <img src={club.cover} />
                 
-            </section>
-        <article>
-            <div>
+            </div>
+        <article className="topContainer">
+            <div className="messageContainer">
             {
                 
                     messagesForClub.map(m => {
                         const t = users.find(user => user.id === m.userId) || {}
                         if(m.userId === currentUser) {
-                            return <section key={m.id}>
-                                <div>{t.username}: {m.messageContent}</div>
-                            
-                                <FontAwesomeIcon type="submit" id={m.id} icon={faBackspace}
-                                onClick={e => {
-                                {   
-                                    const id = parseInt(e.target.id)
-                                    deleteMessage(id)
-                                
-                            }}}
-                            >Delete
-                            </FontAwesomeIcon>
-
-                        </section>
-                        } else {
-                            return <section key={m.id}>
-                                <div>{t.name}: {m.messageContent}</div>
+                            return <section key={m.id} className="theMessageContainer" >
+                                <div className="message_user">{t.username}: {m.messageContent} </div>
+                                <button type="submit" value={m.id} id="chatDeleteBtn" 
+                                    onClick={e => {
+                                        const id = parseInt(e.target.value)
+                                        deleteMessage(id)
+                                    }}>
+                                </button>
                             </section>
-                        }
+                            } else {
+                                return <section key={m.id} className="secondMessageContainer" >
+                                <div className="message_userTwo">{t.username}: {m.messageContent} </div>
+                                </section>
+                            }
+                                
+                                
+                                
+                                
+                            
+                        
                 
                 })
                 
@@ -121,11 +129,11 @@ export const BookClubDetail = (props) => {
 
             </article>
             <form className="chatForm">
-                <h2 className="club_title">{club.name} Message Board</h2>
+                
                 <fieldset>
                     <div className="chatForm-group">
-                        <label htmlFor="chatBox">Message:</label>
-                        <input type="text" id="chatBox" ref={sendMessage} required className="chatForm-control" placeholder="Send Message to the Group" />
+                        <label htmlFor="chatBox"></label>
+                        <input type="text" id="chatBox" ref={sendMessage} required className="chatForm-control" placeholder="Send Group Message" />
                     
                     </div>
                 </fieldset>
@@ -149,6 +157,18 @@ export const BookClubDetail = (props) => {
             </form>
             
         </div>
+        <div className="library__backBtn">
+        <FontAwesomeIcon type="submit" className="backBtn" icon={faArrowAltCircleLeft} size="2x"
+             onClick={e => {
+                 
+                 e.preventDefault()
+                 props.history.push("/clubs")
+             }}
+             >Back
+        </FontAwesomeIcon>
+         <div className="backBtnText">Back</div>
+         </div>
+         </>
     )
                 
                 

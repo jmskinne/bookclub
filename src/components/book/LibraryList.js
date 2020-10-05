@@ -2,18 +2,20 @@ import React, {useContext, useEffect, useState} from "react"
 import {Link} from "react-router-dom"
 import {BookContext} from "./BookProvider"
 
-import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
+//import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 import {Progress} from 'reactstrap'
 //import { findByLabelText } from "@testing-library/react"
 
 import "../book/BookStyle.css"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
 
 export const LibraryList = (props) => {
     const {books, getBooks, getUserBooks, userBooks, addPagesToLibraryBook} = useContext(BookContext) || {}
-    const {clubs, getClubs} = useContext(BookClubJoinContext) || {}
-    const {CreateABookClub} = useContext(BookClubJoinContext) || {}
+    
 
     const [filterSelect, setSelectedFilter] = useState({})
     const [userbooks, setUserBooks] = useState([])
@@ -21,7 +23,7 @@ export const LibraryList = (props) => {
     useEffect(() => {
         getBooks()
         getUserBooks()
-        getClubs()
+        
     }, [])
 
     useEffect(() => {
@@ -35,10 +37,13 @@ export const LibraryList = (props) => {
             
         } else if (filterSelect) {
             const initialRender = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
-        setUserBooks(initialRender)
-        }
+        setUserBooks(initialRender) }
+        // } else if (filterSelect === false) {
+        //     const testRender = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
+        //     setUserBooks(testRender)
+        // }
         
-    }, [userBooks, filterSelect])
+    }, [userBooks, filterSelect, books])
 
     
     return (
@@ -47,7 +52,9 @@ export const LibraryList = (props) => {
         <header className="logo">
             <img className="logomain" src={require('../icons/logo2.png')} alt="App Logo"/>
         </header>
-            
+                <h5 className="sectionTitle">
+                    My Library
+                </h5>
                 <div className="filter-container">
                     <select className="libraryFilters" 
                         onChange={e=> {
@@ -72,12 +79,12 @@ export const LibraryList = (props) => {
                           
                 return <section className="libraryBook" key={userbook.id} >
                 
-                <p>{matched.title}</p> 
+                <p className="libraryBook_title">{matched.title}</p> 
                 <Link to={`/library/${userbook.id}`}>
                     <img src={matched.cover} alt="No Cover" className="libraryBook_cover"/>
                 </Link>
                 <div className="likebutton">
-                <button type="submit" className="addFavoriteBtn" id={userbook.id}
+                <FontAwesomeIcon type="submit" className="addFavoriteBtn" id={userbook.id} icon={faHeart} size="2x"
                     onClick={ e => {
                         e.preventDefault()
                         const toFav = userBooks.find(ub => ub.id === userbook.id)
@@ -89,7 +96,7 @@ export const LibraryList = (props) => {
                                 userId : toFav.userId,
                                 bookId : toFav.bookId,
                                 favorite : true,
-                                minutesRead : 0
+                                minutesRead : toFav.minutesRead
                             
                             })
                         } else {
@@ -100,18 +107,18 @@ export const LibraryList = (props) => {
                                 userId : toFav.userId,
                                 bookId : toFav.bookId,
                                 favorite : false,
-                                minutesRead : 0
+                                minutesRead : toFav.minutesRead
                             
                             })
 
                         }
                     }}
                 >
-                    Favorite
-                </button>
+                    
+                </FontAwesomeIcon>
                 </div>
-                <div className="text-center">{progress}%</div> 
-                    <Progress value={progress} />
+                {/* <div className="text-center">{progress}%</div>  */}
+                <Progress className="progressBar" color="info" value={progress}>{progress}%</Progress>
                 
             
             

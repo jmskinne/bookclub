@@ -1,10 +1,12 @@
 import React, {useContext, useEffect, useState} from "react"
 
 import {BookClubJoinContext} from "./BookClubJoinProvider"
-import {Link} from "react-router-dom"
+//import {Link} from "react-router-dom"
 import { UserClubContext } from "../UserClub/UserClubProvider"
 //import {BookClubJoin} from "./BookClubJoin"
-import {UserContext} from "../Users/UserProvider"
+//import {UserContext} from "../Users/UserProvider"
+
+import "./BookClubJoin.css"
 
 export const BookClubJoinList = (props) => {
     const {clubs, getClubs, JoinClub} = useContext(BookClubJoinContext)
@@ -55,14 +57,17 @@ export const BookClubJoinList = (props) => {
 
     return (
             //<div className="bookclubs">
+            <>
+            <div className="club-Container">
+            <h5 className="sectionTitle">Book Clubs</h5>
                 <article className="clublist">
                 {
                     clubs.map(club => {
                         return <section className="bookclubs" key={club.id}>
-                                <h3>{club.name}</h3>
+                                <h6>{club.name}</h6>
                                 <img src={club.cover} />
                                 
-                            <button type="submit" id={club.id}
+                            <button type="submit" id={club.id} className="joinClubBtn"
                             
                             onClick={e => {
                                 e.preventDefault()
@@ -95,6 +100,8 @@ export const BookClubJoinList = (props) => {
                     })
                 }
                 </article>
+                </div>
+            </>
            
         )
 }

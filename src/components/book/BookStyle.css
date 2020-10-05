@@ -2,6 +2,7 @@
     margin-top: 1rem;
     background: rgb(136,174,233);
     background: linear-gradient(90deg, rgba(136,174,233,1) 0%, rgba(248,250,255,1) 0%);
+    font-family: 'Libre Baskerville', serif;
     
 }
 
@@ -14,10 +15,21 @@
     
     flex-wrap:wrap;
     align-content: space-evenly;
+    font-family: 'Libre Baskerville', serif;
     
     
     
-} 
+}
+
+.sectionTitle {
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+}
+
+.libraryBook_title {
+    font-size: 13px;
+    margin-top: .75rem;
+}
 
 .logo {
     display:flex;
@@ -37,6 +49,7 @@
     display:flex;
     flex-direction: column;
     border: 1px solid black;
+    border-radius:8px;
     margin-right:1rem;
     max-width: 165px;
     text-align: center;
@@ -60,11 +73,12 @@
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 78%;
+  top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+  
 }
 
 
@@ -76,10 +90,13 @@
 
 
 .addFavoriteBtn {
-   background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  padding: 16px 32px;
+    background: rgb(136,174,233);
+    background: linear-gradient(90deg, rgba(136,174,233,1) 0%, rgba(248,250,255,1) 100%);
+    height: 45px;
+    min-width: 130px;
+    opacity: .7;
+    
+   
 }
 
 
@@ -91,7 +108,10 @@
 .libraryFilters {
     margin-top:1rem;
 }
-    
+
+.progressBar {
+    margin-top: .5rem;
+}
     
     
 

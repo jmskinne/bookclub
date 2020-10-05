@@ -1,0 +1,62 @@
+.club-Container {
+    background: rgb(136,174,233);
+    background: linear-gradient(90deg, rgba(136,174,233,1) 0%, rgba(248,250,255,1) 0%);
+}
+
+
+.clublist{
+    display:flex;
+    margin: 1rem;
+    /* margin: 1rem;
+    align-items: center;
+    flex-wrap: wrap; */
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap:wrap;
+    align-content: space-evenly;
+    font-family: 'Libre Baskerville', serif;
+    
+    
+    /*justify-content: flex-start;
+    flex-direction: column; */
+} 
+
+.bookclubs {
+    margin-bottom: 1rem;
+    display:flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin-right:1rem;
+    max-width: 165px;
+    text-align: center;
+    border-radius:8px;
+    
+}
+
+.sectionTitle {
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+}
+
+.joinClubBtn {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(140,206,212,1) 0%);
+    border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	margin-top: 1rem;
+	font-size:14px;
+	font-weight:bold;
+	padding:6px 14px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+
+}
+
+.joinClubBtn:hover {
+    background: rgb(136,174,233);
+    background: linear-gradient(214deg, rgba(136,174,233,1) 0%, rgba(52,193,204,1) 0%);
+}
