@@ -28,15 +28,14 @@ export const BookApiProvider = (props) => {
                             cover : b.volumeInfo.imageLinks.thumbnail,
                             pages : b.volumeInfo.pageCount,
                             booktag : b.id,
-                            id : b.id
+                            id : b.id,
+                            
                             
                         }
                     }) 
                 setApiBooks(newBooks)
                 }
-            ).catch(error => {
-                
-            })
+            )
     }
 
     const getApiBookById = (bookId) => {
@@ -52,11 +51,11 @@ export const BookApiProvider = (props) => {
                         cover : b.volumeInfo.imageLinks.thumbnail,
                         pages : b.volumeInfo.pageCount,
                         booktag : b.id,
-                       // id : b.id
+                        id : b.id
                         
                     }
-                })
-            setBookById(userBookById)
+                }) 
+            setBookById(userBookById) 
     })}
 
 
@@ -73,5 +72,6 @@ export const BookApiProvider = (props) => {
     )
     
 }
+//working api call
 
 

@@ -5,11 +5,11 @@ import {BookContext} from "./BookProvider"
 
 //import {Book} from "./Book"
 
-
+import "../book/BookListStyle.css"
 
 export const BookList = (props) => {
     const {apiBooks, searchTerms, getApiBooks} = useContext(BookApiContext)
-    const {addToUserLibrary, saveBook} = useContext(BookContext)
+    const {addToUserLibrary, saveBook} = useContext(BookContext) 
 
     const [filteredAPIBooks, setFiltered] = useState([])
     
@@ -35,9 +35,9 @@ export const BookList = (props) => {
         <article className="books">
             {
                 filteredAPIBooks.map(b => {
-                    return <section className="booksearch" >
-                        <div><h6 className="booksearch__title">{b.title}</h6></div>
-                        <div className="booksearch__author">{b.author}</div>
+                    return <section className="booksearch" key={b.id}>
+                        <h6 className="booksearch__title">{b.title}</h6>
+                        
                         <img src={b.cover} />
                         <button type="submit" id={b.id}
                             onClick={ event => {

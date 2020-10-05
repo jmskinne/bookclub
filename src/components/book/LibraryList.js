@@ -5,9 +5,13 @@ import {BookContext} from "./BookProvider"
 import {BookClubJoinContext} from "../bookClubJoin/BookClubJoinProvider"
 //import {LibraryBook} from "./LibraryBook"
 import {Progress} from 'reactstrap'
+//import { findByLabelText } from "@testing-library/react"
+
+import "../book/BookStyle.css"
+
 
 export const LibraryList = (props) => {
-    const {books, getBooks, getUserBooks, userBooks, addPagesToLibraryBook} = useContext(BookContext)
+    const {books, getBooks, getUserBooks, userBooks, addPagesToLibraryBook} = useContext(BookContext) || {}
     const {clubs, getClubs} = useContext(BookClubJoinContext) || {}
     const {CreateABookClub} = useContext(BookClubJoinContext) || {}
 
@@ -37,11 +41,14 @@ export const LibraryList = (props) => {
     }, [userBooks, filterSelect])
 
     
-
     return (
-        <div>
-            <section>
-                <div>
+        <>
+        <div className="libraryList-container">
+        <header className="logo">
+            <img className="logomain" src={require('../icons/logo2.png')} alt="App Logo"/>
+        </header>
+            
+                <div className="filter-container">
                     <select className="libraryFilters" 
                         onChange={e=> {
                             const filter = e.target.value
@@ -53,62 +60,74 @@ export const LibraryList = (props) => {
                     </select>
                     
                 </div>
-            </section>
+        
         <article className="libraryBooks">
             {
                 userbooks.map(userbook => { 
                    
                         const matched = books.find(b => b.booktag === userbook.bookId) ||  {}
                         const progress = Math.round(parseInt(userbook.pagesRead) / parseInt(matched.pages) * 100)
-                        return <section className="libraryBook" key={userbook.id}>
-                            <h5 className="library__title">{matched.title}</h5> 
-                            <Link to={`/library/${userbook.id}`}>
-                                <img src={matched.cover} alt="No Cover"/>
-                            </Link>
-                            <button type="submit" id={userbook.id}
-                                onClick={ e => {
-                                    e.preventDefault()
-                                    const toFav = userBooks.find(ub => ub.id === userbook.id)
-                                    if(toFav.favorite === false) {
-                                        //like
-                                        addPagesToLibraryBook({
-                                            id : toFav.id,
-                                            pagesRead : toFav.pagesRead,
-                                            userId : toFav.userId,
-                                            bookId : toFav.bookId,
-                                            favorite : true,
-                                            minutesRead : 0
-                                        
-                                        })
-                                    } else {
-                                        //unlike
-                                        addPagesToLibraryBook({
-                                            id : toFav.id,
-                                            pagesRead : toFav.pagesRead,
-                                            userId : toFav.userId,
-                                            bookId : toFav.bookId,
-                                            favorite : false,
-                                            minutesRead : 0
-                                        
-                                        })
 
-                                    }
-                                }}
-                            >
-                                Favorite
-                            </button>
-                            <div className="text-center">{progress}%</div> 
-                                <Progress value={progress} />
+                         
+                          
+                return <section className="libraryBook" key={userbook.id} >
+                
+                <p>{matched.title}</p> 
+                <Link to={`/library/${userbook.id}`}>
+                    <img src={matched.cover} alt="No Cover" className="libraryBook_cover"/>
+                </Link>
+                <div className="likebutton">
+                <button type="submit" className="addFavoriteBtn" id={userbook.id}
+                    onClick={ e => {
+                        e.preventDefault()
+                        const toFav = userBooks.find(ub => ub.id === userbook.id)
+                        if(toFav.favorite === false) {
+                            //like
+                            addPagesToLibraryBook({
+                                id : toFav.id,
+                                pagesRead : toFav.pagesRead,
+                                userId : toFav.userId,
+                                bookId : toFav.bookId,
+                                favorite : true,
+                                minutesRead : 0
                             
-                        </section>
-                    } 
-                )
-                    
+                            })
+                        } else {
+                            //unlike
+                            addPagesToLibraryBook({
+                                id : toFav.id,
+                                pagesRead : toFav.pagesRead,
+                                userId : toFav.userId,
+                                bookId : toFav.bookId,
+                                favorite : false,
+                                minutesRead : 0
+                            
+                            })
+
+                        }
+                    }}
+                >
+                    Favorite
+                </button>
+                </div>
+                <div className="text-center">{progress}%</div> 
+                    <Progress value={progress} />
+                
             
-            }
-        </article>
-        </div>
+            
+            </section>
+            
+        } 
     )
+        
+
+}
+</article>
+
+</div>
+</>
+)
+                                
 
 
                             
