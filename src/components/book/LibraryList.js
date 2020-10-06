@@ -10,7 +10,7 @@ import {Progress} from 'reactstrap'
 import "../book/BookStyle.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import {  faHeart, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 
 
 export const LibraryList = (props) => {
@@ -19,6 +19,7 @@ export const LibraryList = (props) => {
 
     const [filterSelect, setSelectedFilter] = useState({})
     const [userbooks, setUserBooks] = useState([])
+    const [favCheck, setFavCheck] = useState({})
 
     useEffect(() => {
         getBooks()
@@ -37,13 +38,19 @@ export const LibraryList = (props) => {
             
         } else if (filterSelect) {
             const initialRender = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
-        setUserBooks(initialRender) }
-        // } else if (filterSelect === false) {
-        //     const testRender = userBooks.filter(ub => ub.userId === parseInt(localStorage.getItem("bookclub_user")))
-        //     setUserBooks(testRender)
-        // }
+        setUserBooks(initialRender) 
+        }
+        
         
     }, [userBooks, filterSelect, books])
+
+    // useEffect(() => {
+    //     const favCheck = userBooks.filter(ub => ub.favorite === true && ub.userId === parseInt(localStorage.getItem("bookclub_user")))
+    //     console.log(favCheck)
+    //     setFavCheck(favCheck)
+    // }, [userBooks])
+
+    
 
     
     return (
@@ -84,7 +91,7 @@ export const LibraryList = (props) => {
                     <img src={matched.cover} alt="No Cover" className="libraryBook_cover"/>
                 </Link>
                 <div className="likebutton">
-                <FontAwesomeIcon type="submit" className="addFavoriteBtn" id={userbook.id} icon={faHeart} size="2x"
+                <FontAwesomeIcon type="submit" className="addFavoriteBtn" id={userbook.id} icon={faHeart} size="2x" 
                     onClick={ e => {
                         e.preventDefault()
                         const toFav = userBooks.find(ub => ub.id === userbook.id)

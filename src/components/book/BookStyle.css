@@ -99,6 +99,15 @@
    
 }
 
+.removeFav {
+    background-color: red;
+    height: 45px;
+    min-width: 130px;
+    opacity: .7;
+    
+   
+}
+
 
 
 .filter-container {
